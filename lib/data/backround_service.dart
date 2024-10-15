@@ -6,10 +6,13 @@ void backgroundFetchHeadlessTask(String taskId) async {
 
 void initializeBackgroundFetch() {
   BackgroundFetch.configure(BackgroundFetchConfig(
-    minimumFetchInterval: 15,
+    minimumFetchInterval: 1,
     stopOnTerminate: false,
     enableHeadless: true,
   ), (taskId) {
+
+
+    print("Background fetch triggered with taskId: $taskId");
     backgroundFetchHeadlessTask(taskId);
   });
 }

@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:track_distance/core/utils/duration_formatter.dart';
 import 'package:track_distance/core/utils/size_config.dart';
 import 'package:track_distance/core/values/app_colors.dart';
 import 'package:track_distance/core/widgets/custom_button.dart';
 import 'package:track_distance/presentation/cubit/tracking_cubit.dart';
-// import 'package:track_distance/presentation/screens/tracking/widget/bar_chart.dart';
-import 'package:track_distance/presentation/screens/tracking/widget/tab_button.dart';
 import 'package:track_distance/presentation/screens/tracking/widget/top_section.dart';
 
-
-
-// Main Screen
 class TrackingScreen extends StatelessWidget {
   const TrackingScreen({super.key});
 
@@ -34,7 +30,7 @@ class TrackingScreen extends StatelessWidget {
         ),
         body: BlocBuilder<TrackingCubit, TrackingState>(
           builder: (context, state) {
-        final bloc = context.read<TrackingCubit>();
+            final bloc = context.read<TrackingCubit>();
             return Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: wi(12), vertical: he(20)),
@@ -57,18 +53,23 @@ class TrackingScreen extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: wi(10),
-                          vertical: he(20),
-                        ),
+                            horizontal: wi(10), vertical: he(20)),
                         child: Column(
                           children: [
+                            SizedBox(height: he(10)),
+                            Text(
+                              "Kutish davomiyligi: ${formatDuration(state.waitingDuration)} ",
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
+                              ),
+                            ),
                             const Spacer(),
                             CustomButton(
                               text: "Boshlash",
                               onTap: () async {
                                 await bloc.startTracking();
                               },
-
                             ),
                             SizedBox(height: he(10)),
                             Row(
@@ -76,14 +77,18 @@ class TrackingScreen extends StatelessWidget {
                                 Expanded(
                                   child: CustomButton(
                                     text: "Kutish",
-                                    onTap: () {},
+                                    onTap: () {
+                                      bloc.startWaiting(); // Start waiting if user is stationary
+                                    },
                                   ),
                                 ),
                                 SizedBox(width: wi(10)),
                                 Expanded(
                                   child: CustomButton(
                                     text: "Kutishni to‘xtatish",
-                                    onTap: () {},
+                                    onTap: () {
+                                      bloc.stopWaiting(); // Stop waiting if user resumes movement
+                                    },
                                   ),
                                 ),
                               ],

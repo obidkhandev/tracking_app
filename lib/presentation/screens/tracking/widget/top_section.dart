@@ -38,24 +38,24 @@ class TopSection extends StatelessWidget {
                     ),
                     SizedBox(height: he(40)),
                     Stack(
-                      alignment: Alignment.center, // Ensure all children are centered
+                      alignment: Alignment.center,
                       children: [
                         AnimatedCircularProgress(
                           currentStep: state.totalDistance,
                           totalSteps: 10000,
-                          progressColor: AppColors.primaryColor, // Progress circle color
-                          backgroundColor: Colors.grey.shade300, // Background circle color
+                          progressColor: AppColors.primaryColor,
+                          backgroundColor: Colors.grey.shade300,
                           strokeWidth: 20,
                         ),
                          Center(
                           child: Text(
                             state.totalDistance.toStringAsFixed(1),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
-                            textAlign: TextAlign.center, // Center align the text itself
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ],
@@ -68,9 +68,9 @@ class TopSection extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         color: Colors.black,
                       ),
-                      textAlign: TextAlign.center, // Center align the text itself
+                      textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: he(30)),
+                    SizedBox(height: he(20)),
                   ],
                 ),
               ),
