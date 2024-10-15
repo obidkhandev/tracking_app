@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:track_distance/core/utils/size_config.dart';
-import 'package:track_distance/data/backround_service.dart';
 import 'package:track_distance/presentation/screens/tracking/tracking_screen.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initializeBackgroundFetch();
   runApp(const MyApp());
 }
 

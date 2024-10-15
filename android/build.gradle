@@ -1,13 +1,16 @@
 buildscript {
+    ext.kotlin_version = '1.9.21'
     repositories {
         google()
+//        jcenter()
         mavenCentral()
-        maven {
-            url "${project(':background_fetch').projectDir}/libs"
-        } // Add this line
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
+        dependencies {
+//            classpath 'com.google.gms:google-services:4.4.2'
+            classpath 'com.android.tools.build:gradle:7.3.1'
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        }
     }
 }
 
@@ -16,9 +19,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url "${project(':background_fetch').projectDir}/libs"
-        }
     }
 }
 
